@@ -1,0 +1,51 @@
+from pylab import plot, xlabel, ylabel, show
+
+
+def f(x):
+    return x**2 + 3*x + 1
+
+def finn_c(a, b):
+    # Deriver funksjonen f(x)
+    def f_derivert(x):
+        return 2*x + 3
+    
+    # finn ut c
+    def c_derivert(a,b):
+        return (f(b) - f(a)) / (b - a)
+  
+    def c(c_derivert): 
+        return (c_derivert-3)/2
+    
+    c_verdi = c(c_derivert(a, b))
+    return c_verdi
+
+
+a = 1
+b = 3
+c = finn_c(a, b)
+x=0
+delta_x=0.0001
+listex=[]
+listey=[]
+print("a) Verdien av c når a=1 og b=3 er:", c)
+
+while x <= 100:
+    x = x + delta_x
+    a = a + delta_x
+    b = b + delta_x
+    c = finn_c(a, b)
+    listex.append(c)
+    listey.append(a)
+
+
+def input_verdier_og_finn_c():
+    a = float(input("Skriv inn verdien for a: "))
+    b = float(input("Skriv inn verdien for b: "))
+    c = finn_c(a, b)
+    print("Verdien av c er:", c)
+
+input_verdier_og_finn_c()
+
+plot(listex,listey)
+
+show()
